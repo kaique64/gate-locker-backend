@@ -28,6 +28,7 @@ class MQTTConnection:
         client.connect(url, port)
         return client
     
+class MQTTService:
     def publish(self, client, topic, msg):
         result = client.publish(topic, msg)
 

@@ -21,6 +21,11 @@ class MQTTConnection:
         def on_connect(client, userdata, flags, rc):
             if rc != 0:
                 print("Failed to connect, return code %d\n", rc)
+                return Response({
+                    "status": 500,
+                    "message": "Failed to connect on MQTT"
+                }, status=500)
+
             print("Connected to MQTT Broker!")
         
         client = mqtt_client.Client(client_id)
@@ -35,6 +40,10 @@ class MQTTService:
         status = result[0]
         if status != 0:
             print(f"Failed to send message to topic {topic}")
+            return Response({
+                "status": 500,
+                "message": f"Failed to send message to topic {topic}"
+            }, status=500)
 
         print(f"Send `{msg}` to topic `{topic}`")
 

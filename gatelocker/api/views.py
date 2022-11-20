@@ -1,4 +1,5 @@
 import os
+import time
 import random
 from paho.mqtt import client as mqtt_client
 
@@ -26,6 +27,15 @@ class MQTTConnection:
         client.on_connect = on_connect
         client.connect(url, port)
         return client
+    
+    def publish(self, client, topic, msg):
+        result = client.publish(topic, msg)
+
+        status = result[0]
+        if status != 0:
+            print(f"Failed to send message to topic {topic}")
+
+        print(f"Send `{msg}` to topic `{topic}`")
 
 
 class GateViewSet(viewsets.ModelViewSet):

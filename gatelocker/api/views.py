@@ -48,6 +48,14 @@ class MQTTService:
         print(f"Send `{msg}` to topic `{topic}`")
 
 
+def control_gate(gate_state):
+    mqtt_connection = MQTTConnection()
+    mqtt_service = MQTTService()
+    client = mqtt_connection.connect(BROKER_URL, BROKER_PORT)
+    client.loop_start()
+    
+    mqtt_service.publish(client, BROKER_TOPIC, gate_state)
+
 class GateViewSet(viewsets.ModelViewSet):
     @api_view(['POST'])
     @csrf_protect

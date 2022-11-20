@@ -73,7 +73,7 @@ class GateViewSet(viewsets.ModelViewSet):
     @csrf_protect
     @csrf_exempt
     def close_gate(self,):
-        control_gate("1")
+        control_gate("0")
         
         return Response({
             "status": 200,

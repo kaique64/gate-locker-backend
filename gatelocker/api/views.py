@@ -16,7 +16,7 @@ BROKER_TOPIC = os.getenv('BROKER_TOPIC')
 
 class MQTTConnection:
     def connect(self, url, port):
-        client_id = f'python-mqtt-{random.randint(0, 100000)}'
+        client_id = f'gate-locker-mqtt-{random.randint(0, 100000)}'
 
         def on_connect(client, userdata, flags, rc):
             if rc != 0:

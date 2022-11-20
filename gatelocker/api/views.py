@@ -11,7 +11,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 BROKER_URL = os.getenv('BROKER_URL')
-BROKER_PORT = os.getenv('BROKER_PORT')
+BROKER_PORT = int(os.getenv('BROKER_PORT'))
 BROKER_TOPIC = os.getenv('BROKER_TOPIC')
 
 class MQTTConnection:
